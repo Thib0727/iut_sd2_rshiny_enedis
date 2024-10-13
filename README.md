@@ -7,13 +7,13 @@ Architecture du projet :<br>
 Projet R<br>
     │<br>
     ├── main<br>
-    │       ├── app.R<br>
     │       ├── ui.R<br>
     │       └── server.R<br>
     │<br>
     ├── www <br>
     │       └──custom.css<br>
     │<br>
+    ├── app.R<br>
     ├── adresses-69.csv<br>
     ├── Readme.md<br>
     │<br>
@@ -65,8 +65,8 @@ Dans l'application, on y retrouve 2 pages distinctes l'une de l'autre :<br><br>
 	- La page de connexion : dans celle-ci vous devez renseignez un nom d'utilisateur et un mot de passe pour avoir accès à l'application. Aucune importance sur les valeurs que vous entrez dans cette page cependant, il faut absolument renseignez quelques choses sinon l'accès vous sera refusez.<br><br>
 	- La page de l'application avec 5 onglets différents :<br>
 		- L'onglet Carte Rhône, où on y retrouve la carte du Rhône avec les points de chaque code postal. En sélectionnant un point, vous pouvez retrouvez les infos principales sur le code postal concernant la consommation. Nous avons décidé de ne pas afficher tous les points de chaque logement car nous ne voyons pas l'intérêt de naviguer sur une carte si elle est illisible.<br>
-		(- L'onglet Filtrage, où l'on peut faire des filtres.) <br>
+		- L'onglet Filtrage, où l'on peut faire des filtres reliés au 2ème graphiques de l'onglet Graphiques. <br>
 		- L'onglet Graphiques, où l'on retrouve différents graphiques avec différentes corrélation afin de mieux comprendre les données que nous utilisons.<br>
 		- L'onglet Dataframe, où l'on retrouve l'intégralité des données sous forme de tableau. Vous pouvez appliquer plusieurs filtres comme par exemple, trier chaque colonne par ordre croissant ou décroissant ou encore faire une recherche de la valeur que vous souhaitée recherchez.<br>
-		- L'onglet Mode d'emplois, où l'on retrouve principalement du texte afin d'expliquer le principe de ce projet, comment l'utiliser et ce qui le compose. On y retrouve aussi de quoi installer un MarkDown, qui est un fichier qui répond à une problématique expliqué principalement par des graphiques. <br>
+		- L'onglet Mode d'emplois, où l'on retrouve principalement du texte afin d'expliquer le principe de ce projet, comment l'utiliser et ce qui le compose. <br>
  
