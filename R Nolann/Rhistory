@@ -1,0 +1,256 @@
+install.packages("shiny")
+install.packages("httr")
+install.packages("jsonlite")
+install.packages("RMySQL")
+install.packages("tidygeocoder")
+install.packages("leaflet")
+install.packages("readr")
+install.packages("shinyjs")
+install.packages("shinydashboard")
+library(shiny)
+library(httr)
+library(jsonlite)
+library(RMySQL)
+library(tidygeocoder)
+library(leaflet)
+library(readr)
+library(shinyjs)
+library(shinydashboard)
+library(dplyr)
+# Initialisation de l'API
+contract <- "Lyon"
+api_key <- "adbb8b83872ee11f750777848be5ccd202789a01"
+base_url <- "https://api.jcdecaux.com/vls/v1/stations"
+url <- paste0(base_url, "?contract=", contract, "&apiKey=", api_key)
+# Création du dataframe, à la mise en ligne utiliser la base de données
+VelovList <- fromJSON(rawToChar(GET(url)$content))
+# UI de l'application
+ui <- dashboardPage(
+dashboardHeader(
+title = "GreenTech"
+),
+dashboardSidebar(
+sidebarMenu(
+menuItem("Carte", tabName = "carte_"),
+menuItem("Filtres", tabName = "filtres_"),
+menuItem("Indicateurs", tabName = "indicateurs_"),
+menuItem("README", tabName = "readme_")
+)
+),
+dashboardBody(
+tabItems(
+tabItem( tabName = "carte_",
+actionButton("bouton_refresh", "Rafraîchir les données",style = "margin-bottom: 10px;"),
+# Carte en grand
+box(
+title = "Carte",
+div(style = "height: 100%;", leafletOutput("map")),
+width = 100, # Largeur réduite pour faire de la place aux indicateurs
+height = 840 # Ajustez la hauteur en fonction de vos besoins
+)
+),
+tabItem(tabName = "filtres_",
+fluidRow(
+box(
+#Pourcentage appartements/maisons
+title = "Taux appartements/maisons",
+div(style = "text-align: center; font-size: 24px;", textOutput("pourcentage_box")),
+width = 6,
+height = 150
+),
+box(
+# Taille de la base de donnée
+title = "Nombre de logements",
+div(style = "text-align: center; font-size: 24px;", textOutput("nbStation_box")),
+width = 6,
+height = 150
+),
+),
+fluidRow(
+# Ajout de la zone pour entrer un code postal
+box(
+title = "Filtre par Code Postal",
+textInput("code_postal", "Code Postal :"),
+actionButton("valider_code_postal", "Valider", icon("check"))
+)
+)
+),
+tabItem(tabName = "indicateurs_",
+includeCSS("www/custom.css"),
+fluidRow(
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+textInput("recherche", "Chercher la maman à Yanis :", value = "")
+),
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+actionButton("bouton_recherche", "Rechercher")
+),
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+textOutput("resultat_recherche")
+)
+),
+fluidRow(
+box(
+# Somme place dispo maman yanis
+title = "Nombre de places disponibles dans la mère à Yanis",
+div(style = "text-align: center; font-size: 24px;", textOutput("placeDispo_box")),
+width = 4,
+height = 150
+),
+box(
+# Somme appartements
+title = "Nombre d'appartements disponibles",
+div(style = "text-align: center; font-size: 24px;", textOutput("VeloMecaDispo_box")),
+width = 4,
+height = 150
+),
+box(
+# Somme maisons
+title = "Nombre de maisons disponibles",
+div(style = "text-align: center; font-size: 24px;", textOutput("VeloElecDispo_box")),
+width = 4,
+height = 150
+),
+),
+fluidRow(
+box(
+title = "Répartition de logements disponibles selon le type",
+width = 12,
+plotOutput("pie_chart")
+),
+box(
+# Bouton d'exportation en PNG
+downloadButton("exporter_png", "Exporter en PNG"),
+width = 12,
+)
+),
+),
+tabItem(tabName = "readme_",
+)
+)
+)
+)
+setwd("C:/Users/funox/Desktop/Cours/2/R")
+getwd()
+# Initialisation de l'API
+contract <- "Lyon"
+api_key <- "adbb8b83872ee11f750777848be5ccd202789a01"
+base_url <- "https://api.jcdecaux.com/vls/v1/stations"
+url <- paste0(base_url, "?contract=", contract, "&apiKey=", api_key)
+# Création du dataframe, à la mise en ligne utiliser la base de données
+VelovList <- fromJSON(rawToChar(GET(url)$content))
+# UI de l'application
+ui <- dashboardPage(
+dashboardHeader(
+title = "GreenTech"
+),
+dashboardSidebar(
+sidebarMenu(
+menuItem("Carte", tabName = "carte_"),
+menuItem("Filtres", tabName = "filtres_"),
+menuItem("Indicateurs", tabName = "indicateurs_"),
+menuItem("README", tabName = "readme_")
+)
+),
+dashboardBody(
+tabItems(
+tabItem( tabName = "carte_",
+actionButton("bouton_refresh", "Rafraîchir les données",style = "margin-bottom: 10px;"),
+# Carte en grand
+box(
+title = "Carte",
+div(style = "height: 100%;", leafletOutput("map")),
+width = 100, # Largeur réduite pour faire de la place aux indicateurs
+height = 840 # Ajustez la hauteur en fonction de vos besoins
+)
+),
+tabItem(tabName = "filtres_",
+fluidRow(
+box(
+#Pourcentage appartements/maisons
+title = "Taux appartements/maisons",
+div(style = "text-align: center; font-size: 24px;", textOutput("pourcentage_box")),
+width = 6,
+height = 150
+),
+box(
+# Taille de la base de donnée
+title = "Nombre de logements",
+div(style = "text-align: center; font-size: 24px;", textOutput("nbStation_box")),
+width = 6,
+height = 150
+),
+),
+fluidRow(
+# Ajout de la zone pour entrer un code postal
+box(
+title = "Filtre par Code Postal",
+textInput("code_postal", "Code Postal :"),
+actionButton("valider_code_postal", "Valider", icon("check"))
+)
+)
+),
+tabItem(tabName = "indicateurs_",
+includeCSS("www/custom.css"),
+fluidRow(
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+textInput("recherche", "Chercher la maman à Yanis :", value = "")
+),
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+actionButton("bouton_recherche", "Rechercher")
+),
+div(
+class = "custom-margin",  # Classe CSS pour la marge
+textOutput("resultat_recherche")
+)
+),
+fluidRow(
+box(
+# Somme place dispo maman yanis
+title = "Nombre de places disponibles dans la mère à Yanis",
+div(style = "text-align: center; font-size: 24px;", textOutput("placeDispo_box")),
+width = 4,
+height = 150
+),
+box(
+# Somme appartements
+title = "Nombre d'appartements disponibles",
+div(style = "text-align: center; font-size: 24px;", textOutput("VeloMecaDispo_box")),
+width = 4,
+height = 150
+),
+box(
+# Somme maisons
+title = "Nombre de maisons disponibles",
+div(style = "text-align: center; font-size: 24px;", textOutput("VeloElecDispo_box")),
+width = 4,
+height = 150
+),
+),
+fluidRow(
+box(
+title = "Répartition de logements disponibles selon le type",
+width = 12,
+plotOutput("pie_chart")
+),
+box(
+# Bouton d'exportation en PNG
+downloadButton("exporter_png", "Exporter en PNG"),
+width = 12,
+)
+),
+),
+tabItem(tabName = "readme_",
+)
+)
+)
+)
+# Define server logic required to draw a histogram
+server <- function(input, output) {
+}
+# Run the application
+shinyApp(ui = ui, server = server)
