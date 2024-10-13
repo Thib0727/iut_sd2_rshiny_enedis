@@ -2,25 +2,25 @@
 <h1>ANALYSE DES CONSOMMATIONS ÉNERGÉTIQUES DES LOGEMENTS DU RHÔNE</h1>
 
 
-Architecture du projet :
+Architecture du projet :<br>
 
-Projet R
-	│
-	├── main
-	│	    ├── app.R
-	│	    ├── ui.R
-	│	    └── server.R
-	│
-	├── www 
-	│	    └──custom.css
-	│
-	├── adresses-69.csv
-	├── Readme.md
-	│
-	├── RData
-	├── .RData
-	├── Rhistory
-	└── .Rhistory
+Projet R<br>
+    │<br>
+    ├── main<br>
+    │       ├── app.R<br>
+    │       ├── ui.R<br>
+    │       └── server.R<br>
+    │<br>
+    ├── www <br>
+    │       └──custom.css<br>
+    │<br>
+    ├── adresses-69.csv<br>
+    ├── Readme.md<br>
+    │<br>
+    ├── RData<br>
+    ├── .RData<br>
+    ├── Rhistory<br>
+    └── .Rhistory<br>
 
 
 - Le fichier server.R servira à requêter les données de l'API publique de l'ADEME "DPE Logements existants (depuis juillet 2021)" (sources en bas de page) et ainsi construire le dataframe que l'on utilisera tout au long de ce projet. C'est sur ce fichier que l'on spécifiera le comportement du server pour l'affichage de la carte interactive ou encore des histogrammes. C'est le fichier traitant du "back-end" de ce projet.
