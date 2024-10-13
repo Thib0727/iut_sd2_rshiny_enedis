@@ -39,21 +39,20 @@ Sources:
 
 
 
-
-DOCUMENTATION TECHNIQUE<br><br>
+<br>
+DOCUMENTATION TECHNIQUE<br>
 
 Cette partie a pour but de documenter techniquement notre projet afin de mieux le comprendre.<br>
-*ARCHITECTURE DU PROJET*<br>
 Pour la conception de ce projet, nous avons eu pour missions de réaliser une application, grâce au langage de programmation RShiny, pour observer sur une carte les différents <br>logements d'une région en fonction de la classe de chacun dans le Diagnostic de Performance Energétique (DPE).<br>
 Pour installer l'application sur votre poste, il vous suffit d'installer le fichier ZIP disponible et de l'extraire là où vous le souhaitez. Ainsi il ne vous restera plus qu'à changer <br>correctement les chemins d'accès dans les programmes au niveau des "setwd", dans les 3 fichiers R.<br>
-Pour réaliser l'application nous avons requêter les données de l'API publique de l'ADEME afin de construire une base de données utilisable tout le long du projet.<br>
+Pour réaliser l'application nous avons requêter les données de l'API publique de l'ADEME afin de construire une base de données utilisable tout le long du projet.<br><br>
 Pour mener à bien ce projet nous avons, dans la partie app.R, eu recourt à différents "packages" qui contiennent des fonctions qui ne sont pas installées dans R par défaut et qui nous <br>permet de réaliser toute sorte de programmes : 
-	- "shiny" : pour créer l'applications interactive avec R<br>
-	- "httr" : pour faire des requêtes HTTP et interagir avec l'application<br>
-	- "jsonlite" : pour manipuler les données statistiquement dans une application<br>
-	- "RMySQL" : pour faire des requêtes SQL dans R<br>
+        - "shiny" : pour créer l'applications interactive avec R<br>
+        - "httr" : pour faire des requêtes HTTP et interagir avec l'application<br>
+        - "jsonlite" : pour manipuler les données statistiquement dans une application<br>
+        - "RMySQL" : pour faire des requêtes SQL dans R<br>
 	- "tidygeocoder" : pour utiliser les données dans un système géographique facilement<br>
-	- "leaflet" : pour créer une carte interactive<br>
+        - "leaflet" : pour créer une carte interactive<br>
 	- "readr" : pour lire des données rectangulaire<br>
 	- "shinyjs" : pour pratiquer du JavaScript sans pour autant connaître le JavaScript<br>
 	- "shinydashboard" : pour créer des tableaux de bords<br>
